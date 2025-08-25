@@ -1,32 +1,32 @@
-const User = require('./models/User');
+  const User = require('./models/User');
 
 
 
-const express = require('express');
-const fetch = require('node-fetch');
-const router = express.Router();
+  const express = require('express');
+  const fetch = require('node-fetch');
+  const router = express.Router();
 
-router.post('/chatbot', async (req, res) => {
-  const { message } = req.body;
-  try {
-    // Basic AI-like response logic
-    if (message.toLowerCase().includes("weather")) {
-      const city = message.match(/in\s+(\w+)/i)?.[1] || "London";
-      const apiKey = process.env.OPENWEATHERMAP_API_KEY;
-      const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`);
-      const data = await response.json();
-      if (data.main) {
-        return res.json({ reply: `The temperature in ${city} is ${data.main.temp}°C with ${data.weather[0].description}.` });
+  router.post('/chatbot', async (req, res) => {
+    const { message } = req.body;
+    try {
+      // Basic AI-like response logic
+      if (message.toLowerCase().includes("weather")) {
+        const city = message.match(/in\s+(\w+)/i)?.[1] || "London";
+        const apiKey = process.env.OPENWEATHERMAP_API_KEY;
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`);
+        const data = await response.json();
+        if (data.main) {
+          return res.json({ reply: `The temperature in ${city} is ${data.main.temp}°C with ${data.weather[0].description}.` });
+        }
       }
+      res.json({ reply: "I couldn't fetch the weather right now. Try again." });
+    } catch (error) {
+      console.error(error);
+      res.json({ reply: "Sorry, something went wrong." });
     }
-    res.json({ reply: "I couldn't fetch the weather right now. Try again." });
-  } catch (error) {
-    console.error(error);
-    res.json({ reply: "Sorry, something went wrong." });
-  }
-});
+  });
 
-module.exports = router;
+  module.exports = router;
 
 
 
