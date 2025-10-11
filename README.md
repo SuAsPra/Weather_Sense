@@ -1,6 +1,7 @@
 # Weather_app_with_chatbot
-Small scale full stack app involving weather data from API and AI chatbot 
+Small scale full stack app involving weather data from API and self-made chatbot.
+To be submitted for OS project.
 
-Submission for the problem statement of VIT clubs programming selection round
+Created by - Suriyan Loganathan, Roshan Y, Bharath
 
-Owner - Suriyan Loganathan 24BRS1009
+roll - 24BRS1009
