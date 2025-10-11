@@ -5,3 +5,6 @@ To be submitted for OS project.
 Created by - Suriyan Loganathan, Roshan Y, Bharath
 
 roll - 24BRS1009
+
+
+removed open-ai from dependencies section in package.json
