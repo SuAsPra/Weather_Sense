@@ -4,8 +4,8 @@ const cors = require('cors');
 const path = require('path');
 require('dotenv').config();
 
-const authRoutes = require('./routes/auth');
-const chatbotRoute = require('./routes/server'); // <-- if you have chatbot route
+const authRoutes = require('./routes/Auth');
+const chatbotRoute = require('./routes/chatBot'); // <-- if you have chatbot route
 
 const app = express();
 app.use(cors());
@@ -19,15 +19,17 @@ mongoose.connect(process.env.MONGO_URI, {
 .then(() => console.log('MongoDB connected'))
 .catch(err => console.log(err));
 
+
 // API routes
 app.use('/api/auth', authRoutes);
 app.use('/api', chatbotRoute);
 
 // Serve React frontend after build
-app.use(express.static(path.join(__dirname, '../client/build')));
+// app.use(express.static(path.join(__dirname, '../client/build')));
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/build/index.html'));
+app.get('/', (req, res) => {
+  // res.sendFile(path.join(__dirname, '../client/build/index.html'));
+  res.send('Hello World!');
 });
 
 // Start server
